@@ -1,3 +1,5 @@
+Team 2 Letter Guess Game
+
 main function (Iramir)
 
 This will be the only function with html formatting in it with the "cout" statements.
