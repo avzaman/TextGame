@@ -1,0 +1,61 @@
+main function (Iramir)
+
+This will be the only function with html formatting in it with the "cout" statements.
+This cpp does not need a .h file.
+This file is the only one with a main method. And can probably be the only method in it.
+
+First you gott print the header. 
+
+Second create a processcgi object.
+Then use that object to validate inputs and then return values to store into our main variables.
+ie.
+ProcessCgi proc = new ProcessCgi
+
+Third, make a game object.
+Then use that game object to process the inputs
+
+Fourth and finally print the result.
+
+----------------------------------------------------------
+
+processcgi object (Vince)
+
+Whoever does this should probably make the index.html because of common var names.
+
+3 fields:
+char chosen //the char chosen by the user to select a count for
+int count //the int chosen by the user to select 
+char[] text //the text generated from the text file
+
+Needs at least 6 functions:
+generateChosen() //uses cgi to validate input and populate the chosen variable
+char should not be \n or other weird things.
+
+generateCount() //uses cgi to validate input and populate the count variable
+no negatives allowed and should be less than a threshold.
+
+generateText() //uses cgi to validate input and populate the text variable
+should be a max length.
+generateText should just shove all of the chars into a 1d char array. No point in keeping 2d by \n.
+
+getChosen() //to return to main method
+getCount() //to return to main method
+getText() //to return to main method
+
+The first 3 can be called by constructor.
+Entire program should terminate with message printed if any of the inputs are invalid.
+
+----------------------------------------------------------
+
+game object (Dan)
+
+3 fields:
+char chosen
+int count
+char[] text
+
+2 methods:
+getResult() //calls countText() and compares to count. returns the difference
+countText() //counts the occurences of chosen in text
+
+
