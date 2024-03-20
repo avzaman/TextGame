@@ -27,7 +27,7 @@ Whoever does this should probably make the index.html because of common var name
 3 fields:
 char chosen //the char chosen by the user to select a count for
 int count //the int chosen by the user to select 
-char[] text //the text generated from the text file
+string text //the text generated from the text file
 
 Needs at least 6 functions:
 generateChosen() //uses cgi to validate input and populate the chosen variable
@@ -54,7 +54,7 @@ game object (Dan)
 3 fields:
 char chosen
 int count
-char[] text
+string text
 
 2 methods:
 getResult() //calls countText() and compares to count. returns the difference
