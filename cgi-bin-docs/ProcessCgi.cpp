@@ -1,19 +1,9 @@
-#include <iostream>
-#include <string>
-#include <stdio.h>
-#include <stdlib.h>
-#include <fstream> //for file io
-#include <sstream> //for html string spliting
-
-#include <cgicc/CgiDefs.h>
-#include <cgicc/Cgicc.h>
-#include <cgicc/HTTPHTMLHeader.h>
-#include <cgicc/HTMLClasses.h>
+#include "ProcessCgi.h"
 
 using namespace std;
 using namespace cgicc;
 
-ProcessCgi::ProecessCgi()
+ProcessCgi::ProcessCgi()
 {
     _chosen = processChosen();
     _count = processCount();
@@ -23,10 +13,12 @@ ProcessCgi::~ProcessCgi() {}
 
 char ProcessCgi::processChosen()
 {
+    cout << "<br> in process chosen";
+    Cgicc cgi;
     char in;
     try
     {
-        in = cgi("chosen");
+        in = cgi("chosen")[0];
         if (!(in >= 65 && in <= 90))
         {
             throw(in);
@@ -39,16 +31,20 @@ char ProcessCgi::processChosen()
     catch (...)
     {
         cout << "<span style='color: red'>Error handling char input</span>";
+        exit(1);
     }
     return -1;
 }
 
 int ProcessCgi::processCount()
 {
+    cout << "<br> in process count";
+    Cgicc cgi;
     int in;
     try
     {
-        in = cgi("count");
+        cout << "<br> before stoi";
+        in = stoi(cgi("count"));
         if (!(in > 0 && in <= 100))
         {
             throw(in);
@@ -61,51 +57,82 @@ int ProcessCgi::processCount()
     catch (...)
     {
         cout << "<span style='color: red'>Error handling number input</span>";
+        exit(1);
     }
     return -1;
 }
 
 string ProcessCgi::processText()
 {
+    cout << "<br> in process text";
+    Cgicc cgi;
     try
     {
+        cout << "<br> just before const file iterator";
         const_file_iterator file = cgi.getFile("text");
         string filedata;
         if (file != cgi.getFiles().end())
         {
             filedata = file->getData();
-            saveUploadFile(filedata, "../CPS3525/fileInput.txt");
+            cout << "<br> just before saving file";
+            saveUploadFile(filedata, "../CPS3525/proj3.txt");
         }
         else
         {
             throw(filedata);
         }
     }
-    catch (Exception e)
+    catch (...)
     {
-        cout << e;
+        cout << "<span style='color: red'>Error handling text input</span>";
+        exit(1);
     }
-
-    ifstream file("../CPS3525/fileInput.txt");
-
-    if (!file)
-    {
-        cerr << "Error opening file." << endl;
-    }
-    // Read file contents and construct string containing only A-Z characters
+    cout << "<br> after file saved";
     string content;
     char ch;
-    while (file.get(ch))
+    try
     {
-        if (isalpha(ch))
-        {                           // Check if the character is a letter
-            content += toupper(ch); // Convert to uppercase and append to the string
+        ifstream file("../CPS3525/proj3.txt");
+
+        if (!file)
+        {
+            cout << "<span style='color: red'>Error opening file</span>";
+            exit(1);
         }
+        // Read file contents and construct string containing only A-Z characters
+        while (file.get(ch))
+        {
+            if (isalpha(ch))
+            {                           // Check if the character is a letter
+                content += toupper(ch); // Convert to uppercase and append to the string
+            }
+        }
+        // Close the file
+        file.close();
     }
-    // Close the file
-    file.close();
+    catch (...)
+    {
+        cout << "<span style='color: red'>Error handling text 2 input</span>";
+        exit(1);
+    }
+
     // Print the string containing only A-Z characters
     return content;
+}
+
+char ProcessCgi::getChosen()
+{
+    return _chosen;
+}
+
+int ProcessCgi::getCount()
+{
+    return _count;
+}
+
+string ProcessCgi::getText()
+{
+    return _text;
 }
 
 void ProcessCgi::saveUploadFile(string mydata, string fname)
