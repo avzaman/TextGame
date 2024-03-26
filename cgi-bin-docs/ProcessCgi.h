@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <fstream> //for file io
 #include <sstream> //for html string spliting
+#include <stdexcept> //for error handling
 
 #include <cgicc/CgiDefs.h>
 #include <cgicc/Cgicc.h>
@@ -25,9 +26,9 @@ class ProcessCgi
     public:
         ProcessCgi();
         ~ProcessCgi();
-        char processChosen();
-        int processCount();
-        string processText();
+        char processChosen(const Cgicc& cgi);
+        int processCount(const Cgicc& cgi);
+        string processText(const Cgicc& cgi);
         char getChosen();
         int getCount();
         string getText();

@@ -5,16 +5,19 @@ using namespace cgicc;
 
 ProcessCgi::ProcessCgi()
 {
-    _chosen = processChosen();
-    _count = processCount();
-    _text = processText();
+    //need to make cgi object in constructor and pass indidually
+    //this is cause if in method then looking to grab new form data each time
+    Cgicc cgi;
+    _chosen = processChosen(cgi);
+    _count = processCount(cgi);
+    //cout << "<br>in constructor between count and proctext"; //debugging print
+    _text = processText(cgi);
 }
 ProcessCgi::~ProcessCgi() {}
 
-char ProcessCgi::processChosen()
+char ProcessCgi::processChosen(const Cgicc& cgi)
 {
-    cout << "<br> in process chosen";
-    Cgicc cgi;
+    //cout << "<br> in process chosen"; //debugging print
     char in;
     try
     {
@@ -36,45 +39,54 @@ char ProcessCgi::processChosen()
     return -1;
 }
 
-int ProcessCgi::processCount()
+int ProcessCgi::processCount(const Cgicc& cgi)
 {
-    cout << "<br> in process count";
-    Cgicc cgi;
+    //cout << "<br> in process count"; //debugging print
     int in;
     try
     {
         cout << "<br> before stoi";
-        in = stoi(cgi("count"));
+        string countStr = cgi("count");
+        // Check if countStr is empty or contains non-numeric characters
+        if(countStr.empty() || countStr.find_first_not_of("0123456789") != string::npos) {
+            throw invalid_argument("Invalid count input");
+        }
+        in = stoi(countStr);
         if (!(in > 0 && in <= 100))
         {
-            throw(in);
+            throw out_of_range("Count out of range");
         }
-        else
-        {
-            return in;
-        }
+        return in;
+    }
+    catch (const invalid_argument& e)
+    {
+        cout << "<span style='color: red'>Invalid argument: " << e.what() << "</span>";
+        exit(1);
+    }
+    catch (const out_of_range& e)
+    {
+        cout << "<span style='color: red'>Out of range: " << e.what() << "</span>";
+        exit(1);
     }
     catch (...)
     {
-        cout << "<span style='color: red'>Error handling number input</span>";
+        cout << "<span style='color: red'>Unknown error occurred during count processing</span>";
         exit(1);
     }
-    return -1;
 }
 
-string ProcessCgi::processText()
+string ProcessCgi::processText(const Cgicc& cgi)
 {
-    cout << "<br> in process text";
-    Cgicc cgi;
+    //cout << "<br> in process text"; //debugging print
     try
     {
-        cout << "<br> just before const file iterator";
+        //cout << "<br> just before const file iterator"; //debugging print
         const_file_iterator file = cgi.getFile("text");
         string filedata;
         if (file != cgi.getFiles().end())
         {
             filedata = file->getData();
-            cout << "<br> just before saving file";
+            //cout << "<br> just before saving file"; //debugging print
             saveUploadFile(filedata, "../CPS3525/proj3.txt");
         }
         else
@@ -87,7 +99,7 @@ string ProcessCgi::processText()
         cout << "<span style='color: red'>Error handling text input</span>";
         exit(1);
     }
-    cout << "<br> after file saved";
+    //cout << "<br> after file saved"; //debugging print
     string content;
     char ch;
     try

@@ -6,7 +6,8 @@
 #include "Game.h"
 #include "ProcessCgi.h"
 
-int main(){
+int main()
+{
     cout << "Content-type:text/html\r\n\r\n";
     cout << "<html>\n";
     cout << "<head>\n";
@@ -17,12 +18,19 @@ int main(){
 
     cout << "<br> before constructor";
 
-    ProcessCgi proc;
+    try
+    {
+        ProcessCgi proc; // Attempt to construct ProcessCgi object
+        cout << "<br> made it out of cons";
 
-    cout << "<br> made it out of cons";
-
-    cout << "<br>Chosen char: " << proc.getChosen();
-    cout << "<br>Count int: " << proc.getCount();
-    cout << "<br>Text string:<br>" << proc.getText();
+        cout << "<br>Chosen char: " << proc.getChosen();
+        cout << "<br>Count int: " << proc.getCount();
+        cout << "<br>Text string:<br>" << proc.getText();
+    }
+    catch (const std::exception &e)
+    {
+        cout << "Exception caught during ProcessCgi construction: " << e.what() << endl;
+        exit(1);
+    }
 }
 // I made a temporary main function to test out ProcessCgi class and compile script <3 -Vince

@@ -18,8 +18,8 @@
         </select>
         <br><br>
         
-        <label for="number">Enter a number (1-100):</label>
-        <input type="number" id="number" name="count" min="1" max="100">
+        <label for="count">Enter a number (1-100):</label>
+        <input type="number" id="count" name="count" min="1" max="100">
         <br><br>
       
         <label for="file">Choose a .txt file:</label>
