@@ -1,5 +1,11 @@
 Team 2 Letter Guess Game
 
+IN ORDER FOR BUNDLE.SH TO WORK YOU MUST HAVE DIRECTORY SETUP CORRECTLY
+
+usr/public_html/cgi-bin
+usr/public_html/CPS3525
+usr/public_html/TextGame    <--- Project root
+
 main function (Iramir)
 
 This will be the only function with html formatting in it with the "cout" statements.
