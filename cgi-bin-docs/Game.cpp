@@ -4,17 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <cgicc/CgiDefs.h>
-#include <cgicc/Cgicc.h>
-#include <cgicc/HTTPHTMLHeader.h>
-#include <cgicc/HTMLClasses.h>
-
 using namespace std;
 using namespace cgicc;
 
-int main () 
+int charcount () 
 {
-   Cgicc cgi;
 
    bool debug = false; // change to true and re=compile to debug with fixed vars
    int asciiMAX = 126; // max keyboard expected input for ascii 
