@@ -1,85 +1,27 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <stdio.h>
-#include <stdlib.h>
-
+#include "Game.h"
 using namespace std;
-using namespace cgicc;
 
-int charcount () 
+int countText(char key, string text) 
 {
-
-   bool debug = false; // change to true and re=compile to debug with fixed vars
-   int asciiMAX = 126; // max keyboard expected input for ascii 
-   int table[asciiMAX][3];
-
-   for (int i = 0; i < asciiMAX; ++i) // initalize array with empty values
-   { 
-        table[i][0] = i;    // ASCii value
-        table[i][1] = 0;    // count 
-        table[i][2] = 0;    // character 
-    }
-   
-   for (char x : mydata) // array to fill with values
-   { 
-      int ascii = int(x);
-      table[ascii][1]++; // add to count value with current iterated char
-
-      if (table[ascii][2] == 0) //check if value is in array, if so table[ASCIVALUE][2] == !0
-      { 
-         table[ascii][2] = x; //add it to the char identifier column, int conversion is done when added to int array
+   int x;
+   for(char n : text){
+      if(n == key){
+         x++; // increment count when the selected char is found in the text, return it as an int to know how many times the selected char is in the text.
       }
+      return x;
    }
+}
 
-   cout << "<TABLE border=1>";
-   cout << "<TH>ASCII #<TH>Char<TH>Count ";
+int getResult(){
+   int value = countText(key, text);
 
-   int max = 0, min = 99;
-   for (int i = 0; i < asciiMAX; ++i)
-   {
-      if (table[i][1] > 0) // skips table elements with count == 0
-      { 
-         cout << "<TR><TD>"<<table[i][0] << "<TD>" << char(table[i][2]) <<"<TD>"<<table[i][1]; // print table
-         if(table[i][1] > max){
-            max = table[i][1];      // define max var to grab max count later
-         }
-         if(table[i][1] < min){
-            min = table[i][1];     // define min var to grab max count later
-         }
-      }
+   if(usrcount > value){
+      return 1;
    }
-   cout << "</TABLE>";       // close table
-
-   vector<char> maxArr;
-   vector<char> minArr;
-   for (int i = 0; i < asciiMAX; ++i)
-   {
-      if (table[i][1] > 0 && table[i][1] == max) { // skips table elements with count == 0  and adds them to char output array
-         maxArr.push_back(table[i][2]);
-      }
-      if (table[i][1] >0 && table[i][1] == min){  // skips table elements with count == 0  and adds them to char output array
-         minArr.push_back(table[i][2]);
-      }
+   else if (usrcount < value){
+      return -1;
    }
-
-   cout << "<br>Character: ";   // max count output 
-   for(char k : maxArr)
-   {
-      if (k > 0){
-         cout << k << " ";
-      }
+   else{
+      return 0;
    }
-   cout <<"has maximum count: " << max;
-
-   cout << "<br>Character: ";    // max count output 
-   for(char k : minArr)
-   {
-      if (k > 0){
-         cout << k << " ";
-      }
-   }
-   cout <<"has minimum count: " << min;
-
-   cout << "</body>\n";
 }
