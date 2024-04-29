@@ -31,7 +31,7 @@ int main()
         Game* game = new Game(proc.getChosen(),proc.getCount(),proc.getText()); //Crete a Game object and process inputs
 
         //Get the results from the Game class
-        int results = game.getResults();
+        int results = game->getResults();
 
         if(results == 0){
             cout << "<br> You guessed the right number!!";
@@ -39,7 +39,7 @@ int main()
             cout << "<br> Your guess is too high";
         }else{
             cout << "<br> Your guess is too low";
-
+        }
     }
     catch (const std::exception &e)
     {
