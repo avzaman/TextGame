@@ -17,15 +17,15 @@ int main()
     cout << "<body>\n";
     cout << "<h2>CPS 3525 Project 3</h2>\n";
 
-    cout << "<br> before constructor";
+    //cout << "<br> before constructor";
 
     try
     {
         ProcessCgi proc; // Attempt to construct ProcessCgi object
-        cout << "<br> User's Input:";
+        //cout << "<br> User's Input:";
 
         cout << "<br>Chosen char: " << proc.getChosen();
-        cout << "<br>Count int: " << proc.getCount();
+        cout << "<br>Guessed int: " << proc.getCount();
         cout << "<br>Text string:<br>" << proc.getText();
 
         Game *game = new Game(proc.getChosen(), proc.getCount(), proc.getText()); // Crete a Game object and process inputs

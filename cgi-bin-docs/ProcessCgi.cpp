@@ -45,7 +45,7 @@ int ProcessCgi::processCount(const Cgicc& cgi)
     int in;
     try
     {
-        cout << "<br> before stoi";
+        //cout << "<br> before stoi";
         string countStr = cgi("count");
         // Check if countStr is empty or contains non-numeric characters
         if(countStr.empty() || countStr.find_first_not_of("0123456789") != string::npos) {
