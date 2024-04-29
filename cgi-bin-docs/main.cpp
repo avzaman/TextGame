@@ -39,11 +39,11 @@ int main()
         }
         else if (results > 0)
         {
-            cout << "<br> Your guess is too high";
+            cout << "<br> Your guess is too Low";
         }
         else
         {
-            cout << "<br> Your guess is too low";
+            cout << "<br> Your guess is too High";
         }
     }
     catch (const std::exception &e)
