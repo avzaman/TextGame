@@ -28,7 +28,7 @@ int main()
         cout << "<br>Count int: " << proc.getCount();
         cout << "<br>Text string:<br>" << proc.getText();
 
-        Game game; //Crete a Game object and process inputs
+        Game game = new Game(proc.getChosen(),proc.getCount(),proc.getText()); //Crete a Game object and process inputs
 
         //Get the results from the Game class
         int results = game.getResults();

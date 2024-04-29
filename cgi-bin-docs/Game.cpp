@@ -1,9 +1,14 @@
 #include "Game.h"
-#include "ProcessCgi.h"
 
 using namespace std;
 
-int countText(char key, string text) 
+Game::Game(char inKey, int inUsrCount, string inText){
+   _key = inKey;
+   _usrCount = inUsrCount;
+   _text = inText;
+}
+
+int Game::countText(char key, string text) 
 {
    int x;
    for(char n : text){
@@ -14,19 +19,16 @@ int countText(char key, string text)
    }
 }
 
-int getResult(){
-   char key = ProcessCgi::getChosen();
-   int usrcount = ProcessCgi::getCount();
-   string text = ProcessCgi::getText();
-   int value = countText(key, text);
+int Game::getResult(){
+   int value = countText(_key, _text);
 
-   if(usrcount > value){
+   if(_usrCount > value){
       return 1; // return positive 1 if the selected int from web is greater than acutal value number
    }
-   else if (usrcount < value){
+   else if (_usrCount < value){
       return -1; // reutrn negative 1 if the selected in from web is less than actual number
    }
-   else if (usrcount == value){
+   else if (_usrCount == value){
       return 0; // return 0 for successfull 
    }
    else{
