@@ -28,16 +28,21 @@ int main()
         cout << "<br>Count int: " << proc.getCount();
         cout << "<br>Text string:<br>" << proc.getText();
 
-        Game* game = new Game(proc.getChosen(),proc.getCount(),proc.getText()); //Crete a Game object and process inputs
+        Game *game = new Game(proc.getChosen(), proc.getCount(), proc.getText()); // Crete a Game object and process inputs
 
-        //Get the results from the Game class
-        int results = game->getResults();
+        // Get the results from the Game class
+        int results = game->getResult();
 
-        if(results == 0){
+        if (results == 0)
+        {
             cout << "<br> You guessed the right number!!";
-        }else if(results > 0){
+        }
+        else if (results > 0)
+        {
             cout << "<br> Your guess is too high";
-        }else{
+        }
+        else
+        {
             cout << "<br> Your guess is too low";
         }
     }
@@ -51,5 +56,4 @@ int main()
     cout << "</html>\n";
 
     return 0;
-    }
 }
