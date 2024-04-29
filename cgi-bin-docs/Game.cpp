@@ -11,8 +11,8 @@ Game::Game(char inKey, int inUsrCount, string inText){
 int Game::countText(char key, string text) 
 {
    int x = 0;
-   for(char n : text){
-      if(n == key){
+   for(int n = 0; n < text.length(); n++){
+      if(text[n] == key){
          x++; // increment count when the selected char is found in the text, return it as an int to know how many times the selected char is in the text.
       }
       cout << "<br> dlordelo -- text string is: " << text;
