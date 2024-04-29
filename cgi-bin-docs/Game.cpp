@@ -15,6 +15,7 @@ int Game::countText(char key, string text)
       if(n == key){
          x++; // increment count when the selected char is found in the text, return it as an int to know how many times the selected char is in the text.
       }
+      cout << "<br> dlordelo -- text string is: " << text;
       cout << "<br> dlordelo -- countText value is: " << x;
       return x;
    }
