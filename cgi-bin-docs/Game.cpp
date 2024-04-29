@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "ProcessCgi.h"
+
 using namespace std;
 
 int countText(char key, string text) 
@@ -13,15 +15,21 @@ int countText(char key, string text)
 }
 
 int getResult(){
+   char key = ProcessCgi::getChosen();
+   int usrcount = ProcessCgi::getCount();
+   string text = ProcessCgi::getText();
    int value = countText(key, text);
 
    if(usrcount > value){
-      return 1;
+      return 1; // return positive 1 if the selected int from web is greater than acutal value number
    }
    else if (usrcount < value){
-      return -1;
+      return -1; // reutrn negative 1 if the selected in from web is less than actual number
+   }
+   else if (usrcount == value){
+      return 0; // return 0 for successfull 
    }
    else{
-      return 0;
+      cout << "Error in Game.cpp line 33"; // failsafe error
    }
 }
