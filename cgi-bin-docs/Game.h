@@ -20,3 +20,4 @@ class Game
         int getResult();
         int countText(char key, string text);
 };
+#endif
