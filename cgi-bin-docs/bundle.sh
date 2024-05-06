@@ -4,6 +4,7 @@ g++ -c main.cpp  -std=c++11
 g++ -o project3 main.o Game.o ProcessCgi.o -lcgicc
 chmod 705 project3
 chmod 705 ../public-html-docs/project3.php
+chmod 705 ../public-html-docs/style.css
 cp -fi project3 ../../../cgi-bin/project3
 cp -fi ProcessCgi.h ../../../cgi-bin/ProcessCgi.h
 cp -fi Game.h ../../../cgi-bin/Game.h
