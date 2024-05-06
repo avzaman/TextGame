@@ -8,3 +8,4 @@ cp -fi project3 ../../../cgi-bin/project3
 cp -fi ProcessCgi.h ../../../cgi-bin/ProcessCgi.h
 cp -fi Game.h ../../../cgi-bin/Game.h
 cp -fi ../public-html-docs/project3.php ../../project3.php
+cp -fi ../public-html-docs/style.css ../../style.css

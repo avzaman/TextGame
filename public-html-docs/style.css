@@ -1,0 +1,28 @@
+body{
+    background-color: lightsalmon;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 20pt;
+    font-variant: small-caps;
+    color:ivory;
+}
+
+h1{
+    font-size: 32pt;
+    align-self: center;
+}
+
+form{
+    justify-content: center;
+    align-self: center;
+    background-color: darksalmon;
+    border-color: cornsilk;
+    border-width: 10px;
+    border-radius: 5px;
+}
+
+input{
+    align-self: left;
+    border-color: cornsilk;
+    border-width: 5px;
+    border-radius: 3px;
+}

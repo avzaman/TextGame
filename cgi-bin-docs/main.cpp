@@ -13,6 +13,7 @@ int main()
     cout << "<html>\n";
     cout << "<head>\n";
     cout << "<title>CPS 3525 project 2</title>\n";
+    cout << "<link rel='stylesheet' href='../CPS3525/style.css'>\n";
     cout << "</head>\n";
     cout << "<body>\n";
     cout << "<h2>CPS 3525 Project 3</h2>\n";

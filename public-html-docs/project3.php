@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unix Project 3</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>Play the text game!</h1>
     <form action="../cgi-bin/project3" method="post" enctype="multipart/form-data">
         <label for="letters">Select a letter:</label>
         <select id="letters" name="chosen">
